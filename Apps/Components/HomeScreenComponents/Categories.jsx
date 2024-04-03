@@ -4,7 +4,7 @@ import React from 'react';
 export default function Categories({ categoryList }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Categories</Text>
+      <Text style={styles.title}>Categoriesss</Text>
       
       <FlatList
         data={categoryList}
