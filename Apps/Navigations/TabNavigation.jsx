@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { View, Text } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -6,6 +7,7 @@ import ExploreScreen from "../Screens/ExploreScreen";
 import AddPostScreen from "../Screens/AddPostScreen";
 import ProfileScreen from "../Screens/ProfileScreen";
 import { Ionicons } from "@expo/vector-icons";
+import HomeScreenStackNav from "./HomeScreenStackNav";
 
 
 const Tab = createBottomTabNavigator();
@@ -19,8 +21,8 @@ export default function TabNavigation() {
       }}
     >
       <Tab.Screen
-        name="home"
-        component={HomeSceen}
+        name="home-nav"
+        component={HomeScreenStackNav}
         options={{
           tabBarLabel: ({ color }) => (
             <Text style={{ color: color}}>
