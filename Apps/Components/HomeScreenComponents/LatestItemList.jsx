@@ -2,10 +2,10 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import React from 'react'
 import PostItem from './PostItem'
 
-export default function LatestItemList({ latestItemList }) {
+export default function LatestItemList({ latestItemList, heading }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Latest Items</Text>
+      <Text style={styles.title}>{heading}</Text>
 
       <FlatList 
         data={latestItemList}

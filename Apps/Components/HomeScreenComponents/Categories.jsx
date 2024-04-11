@@ -1,16 +1,25 @@
 import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+
+
 
 export default function Categories({ categoryList }) {
+  
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Categoriesss</Text>
+      <Text style={styles.title}>Categories</Text>
       
       <FlatList
         data={categoryList}
         numColumns={4}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.categoryItem}>
+          <TouchableOpacity 
+           onPress={()=>navigation.navigate('item-list',{category:item.name})}
+           
+           style={styles.categoryItem}>
             <Image
               source={{ uri: item.icon }}
               style={styles.icon}
