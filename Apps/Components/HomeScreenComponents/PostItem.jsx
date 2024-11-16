@@ -1,9 +1,16 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 export default function PostItem({ item }) {
+  
+  const navigation= useNavigation();
+  
   return (
-    <TouchableOpacity style={styles.itemContainer}>
+    <TouchableOpacity style={styles.itemContainer}
+    onPress={()=>navigation.push('product-detail',
+      {product:item}
+    )}>
       <Image 
         source={{ uri: item.image }}
         style={styles.itemImage}

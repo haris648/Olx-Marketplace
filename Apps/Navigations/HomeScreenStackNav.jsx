@@ -3,6 +3,7 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../Screens/HomeSceen';
 import ItemList from '../Screens/ItemList';
+import ProductDetails from '../Screens/ProductDetails';
 
 
 const Stack = createStackNavigator();
@@ -18,6 +19,15 @@ export default function HomeScreenStackNav() {
         backgroundColor: "#c53030",
       },
       headerTintColor: "#fff" })}
+      />
+      <Stack.Screen name='product-detail' component={ProductDetails} 
+      options={{
+        headerStyle:{
+          backgroundColor: "#c53030",
+        },
+        headerTintColor: "#fff",
+        headerTitle:"Detail"
+      }}
       
       />
     </Stack.Navigator>
