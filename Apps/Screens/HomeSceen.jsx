@@ -51,10 +51,11 @@ export default function HomeScreen() {
 
   return (
     <ScrollView style={styles.container}>
+      
       <Header />
       <Slider sliderList={sliderList} />
       <Categories categoryList={categoryList} />
-      <LatestItemList latestItemList={latestItemList} scrollEnabled={false} heading={'Latest Items'} />
+      <LatestItemList latestItemList={latestItemList} scrollEnabled={false} heading={'Latest Items'} nestedScrollEnabled={true} />
     </ScrollView>
   );
 }
