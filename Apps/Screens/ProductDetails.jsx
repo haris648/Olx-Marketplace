@@ -1,23 +1,48 @@
-import { View, Text, Image, TouchableOpacity, Linking } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Linking, Share } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useRoute } from '@react-navigation/native'
 import Categories from './../Components/HomeScreenComponents/Categories';
 import { ScrollView } from 'react-native-gesture-handler';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function ProductDetails() {
+export default function ProductDetails({navigation}) {
   
   const {params}=useRoute();
   const [product, setProduct]=useState([]);
   useEffect(() => {
     params&&setProduct(params.product);
-  }, [params])
+    shareButton();
+  }, [params, navigation])
   
+  const shareButton=()=>{
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={() => shareProduct()}>
+        <Ionicons name="share-social-sharp" size={24} color="white" style={{marginRight: 15}} />
+        </TouchableOpacity>
+      ),
+    });
+  }
+
+  const shareProduct=async()=>{
+    const content={
+      message:product?.title+"\n"+product?.desc,
+    }
+    
+    Share.share(content).then(resp=>{
+      console.log(resp);
+    },(error)=>{
+      console.log(error);
+    })
+  }
+
   const sendEmailMessage=()=>{
     const subject='Regarding'+product.title;
     const body='Hi '+product.userName+"\n"+"I am interested in this product";
     Linking.openURL('mailto:'+product.userEmail+"?subject="+subject+"&body="+body);
   }
 
+  
   return (
     <ScrollView className="bg-white">
       <Image source={{uri:product.image}}
