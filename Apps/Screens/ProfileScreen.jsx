@@ -5,15 +5,27 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import diary from './../../assets/Images/book.png';
 import search from './../../assets/Images/search.png';
 import logout from './../../assets/Images/power.png';
+import { useNavigation } from '@react-navigation/native';
+import { useAuth } from "@clerk/clerk-expo";
 
 export default function ProfileScreen() {
   const { user } = useUser();
-
+  const navigation=useNavigation();
+  const { isLoaded, signOut } = useAuth();
   const menuList = [
-    { id: 1, name: 'My Products', icon: diary },
-    { id: 2, name: 'Search', icon: search },
+    { id: 1, name: 'My Products', icon: diary, path:'my-product' },
+    { id: 2, name: 'Search', icon: search, path:'explore' },
     { id: 3, name: 'Logout', icon: logout },
   ];
+
+  const onMenuPress=(item)=>{
+    if(item.name=='Logout')
+    {
+      signOut();
+      return;
+    }
+    item?.path?navigation.navigate(item.path):null;
+  }
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -35,7 +47,9 @@ export default function ProfileScreen() {
           key={`columns-${3}`}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <TouchableOpacity style={{ flex: 1, alignItems: 'center', paddingTop: 20 }}>
+            <TouchableOpacity
+            onPress={()=>onMenuPress(item)}
+            style={{ flex: 1, alignItems: 'center', paddingTop: 20 }}>
               {item.icon && (
                 <Image source={item.icon} style={{ width: 30, height: 30 }} />
               )}

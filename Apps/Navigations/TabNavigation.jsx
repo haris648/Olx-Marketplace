@@ -9,6 +9,7 @@ import ProfileScreen from "../Screens/ProfileScreen";
 import { Ionicons } from "@expo/vector-icons";
 import HomeScreenStackNav from "./HomeScreenStackNav";
 import ExploreScreenStackNav from './ExploreScreenStackNav';
+import ProfileScreenStackNav from './ProfileScreenStackNav';
 
 
 const Tab = createBottomTabNavigator();
@@ -65,7 +66,7 @@ export default function TabNavigation() {
       />
       <Tab.Screen
         name="profile"
-        component={ProfileScreen}
+        component={ProfileScreenStackNav}
         options={{
           tabBarLabel: ({ color }) => (
             <Text style={{ color: color}}>
