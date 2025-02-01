@@ -62,7 +62,7 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 32, // Corresponds to py-8
+    paddingTop: 38, // Corresponds to py-8
     paddingHorizontal: 24, // Corresponds to px-6
     backgroundColor: '#ffffff', // bg-white
     flex: 1,
