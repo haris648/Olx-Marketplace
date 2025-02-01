@@ -1,8 +1,8 @@
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Header from '../Components/HomeScreenComponents/Header';
 import Slider from '../Components/HomeScreenComponents/Slider';
-import { getFirestore, collection, getDocs, addDoc, orderBy } from "firebase/firestore";
+import { getFirestore, collection, getDocs, orderBy } from "firebase/firestore";
 import { app } from "../../FirebaseConfig";
 import Categories from '../Components/HomeScreenComponents/Categories';
 import LatestItemList from '../Components/HomeScreenComponents/LatestItemList';
@@ -50,13 +50,19 @@ export default function HomeScreen() {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      
-      <Header />
-      <Slider sliderList={sliderList} />
-      <Categories categoryList={categoryList} />
-      <LatestItemList latestItemList={latestItemList} scrollEnabled={false} heading={'Latest Items'} nestedScrollEnabled={true} />
-    </ScrollView>
+    <FlatList
+      data={latestItemList}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ item }) => null} // Empty since LatestItemList handles its own rendering
+      ListHeaderComponent={() => (
+        <View style={styles.container}>
+          <Header />
+          <Slider sliderList={sliderList} />
+          <Categories categoryList={categoryList} />
+          <LatestItemList latestItemList={latestItemList} heading={'Latest Items'} />
+        </View>
+      )}
+    />
   );
 }
 
@@ -67,5 +73,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff', // bg-white
     flex: 1,
   },
-  // Add additional styles here as needed
 });

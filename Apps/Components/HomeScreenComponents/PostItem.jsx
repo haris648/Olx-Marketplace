@@ -27,8 +27,9 @@ export default function PostItem({ item }) {
 const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
-    margin: 2,
+    margin: 5,
     padding: 2,
+    paddingBottom: 4,
     borderWidth: 1,
     borderColor: '#e2e8f0', // Equivalent to border-slate-200
     borderRadius: 8,
